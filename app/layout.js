@@ -18,24 +18,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-   title: 'SelfBoss Youth Foundation',
-  description: 'Empowering Nigerian youth through training, funding, and community impact.',
-  openGraph: {
-    title: 'SelfBoss Youth Foundation',
-    description: 'Join our mission to empower Nigerian youth.',
-    url: 'https://selfbossfoundation.vercel.app',
-    siteName: 'SelfBoss Foundation',
-    images: [
-      {
-        url: '/images/gallery16.jpeg',
-        width: 1200,
-        height: 630,
-        alt: 'SelfBoss Youth Foundation Logo',
-      },
-    ],
-    type: 'website',
-  },
+  title: 'SelfBoss Youth Foundation',
+  description: 'Empowering Nigerian youth through training, funding, and impact.',
+  metadataBase: new URL('https://selfbossfoundation.vercel.app'), // ✅ Add this line
 }
+
 
 export default function RootLayout({ children }) {
   return (

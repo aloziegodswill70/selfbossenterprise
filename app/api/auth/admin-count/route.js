@@ -1,11 +1,17 @@
-import { prisma } from '@/lib/prisma' // ✅ Use the shared Prisma client
+import { prisma } from '@/lib/prisma'
 
 export async function GET() {
   try {
     const count = await prisma.user.count()
-    return new Response(JSON.stringify({ count }), { status: 200 })
+    return new Response(JSON.stringify({ count }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    })
   } catch (error) {
-    console.error('Error counting users:', error)
-    return new Response(JSON.stringify({ error: 'Internal Server Error' }), { status: 500 })
+    console.error('Admin count error:', error)
+    return new Response(JSON.stringify({ error: 'Server error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    })
   }
 }

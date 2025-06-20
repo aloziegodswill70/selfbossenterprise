@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt"
-import { prisma } from "@/lib/prisma" // ✅ Use this exact path or relative if alias fails
+import { prisma } from "@/lib/prisma"
 
 const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,

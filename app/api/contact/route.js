@@ -1,17 +1,27 @@
 import nodemailer from 'nodemailer'
 
+const requiredEnv = ['EMAIL_HOST', 'EMAIL_PORT', 'EMAIL_USER', 'EMAIL_PASS', 'EMAIL_TO']
+for (const key of requiredEnv) {
+  if (!process.env[key]) {
+    throw new Error(`Missing required environment variable: ${key}`)
+  }
+}
+
 export async function POST(request) {
   try {
     const { name, email, subject, message } = await request.json()
 
     if (!name || !email || !subject || !message) {
-      return new Response(JSON.stringify({ error: 'Missing fields' }), { status: 400 })
+      return new Response(JSON.stringify({ error: 'Missing fields' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      })
     }
 
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: parseInt(process.env.EMAIL_PORT),
-      secure: false,
+      secure: process.env.EMAIL_PORT === '465', // ✅ true for SSL (port 465)
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -32,9 +42,15 @@ export async function POST(request) {
       `,
     })
 
-    return new Response(JSON.stringify({ success: true }), { status: 200 })
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    })
   } catch (error) {
     console.error('Email send error:', error)
-    return new Response(JSON.stringify({ error: 'Server error' }), { status: 500 })
+    return new Response(JSON.stringify({ error: 'Server error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    })
   }
 }

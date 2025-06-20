@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client"
-import bcrypt from "bcrypt"
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma' // ✅ Use shared Prisma instance
+import bcrypt from 'bcrypt'
 
 export async function POST(req) {
   try {

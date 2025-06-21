@@ -1,10 +1,7 @@
-/* app/globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: add your own global styles below */
 body {
   font-family: 'Geist', sans-serif;
 }

@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gold: '#c59d5f',     // ✅ Use this shade to match your design
-        black: '#000000',    // ✅ Keep only once
+        gold: '#c59d5f',
+        black: '#000000',
       },
     },
   },

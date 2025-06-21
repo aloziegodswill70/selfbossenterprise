@@ -1,13 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./app/**/*.{js,jsx}",
+    './app/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
   ],
   theme: {
     extend: {
       colors: {
-        gold: "#FFD700",  // Adjust if needed to match logo
-        black: "#000000",
+        gold: '#c59d5f',
+        black: '#000000', // 👈 Optional but explicit
       },
     },
   },
